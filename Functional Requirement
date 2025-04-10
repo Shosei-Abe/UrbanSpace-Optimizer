@@ -1,0 +1,84 @@
+# Urban Space Optimizer — Functional Requirements Document
+
+## 1. Overview
+This document outlines the functional requirements for the Urban Space Optimizer system during the Proof of Concept (PoC) phase in Budapest. These requirements define the key features and user interactions that the system must support.
+
+---
+
+## 2. Use Case Summary
+| Use Case ID | Name                      | Description                                                |
+|-------------|---------------------------|------------------------------------------------------------|
+| UC-01       | Parking Search            | Users search for parking near a specific location.         |
+| UC-02       | Availability Estimation   | Users view estimated availability for parking zones.       |
+| UC-03       | EV Charging Filter        | Users filter search results by EV charger compatibility.   |
+| UC-04       | Navigation Integration    | Users receive directions to selected parking spots.        |
+| UC-05       | Interactive Map Display   | Users interact with parking data via map interface.        |
+
+---
+
+## 3. Functional Requirements
+
+### FR-01: Parking Search
+- The system shall allow users to enter a location or enable geolocation.
+- The system shall fetch nearby parking facilities using Google Maps Places API.
+- The system shall return a list of parking options sorted by proximity.
+
+### FR-02: Availability Estimation
+- The system shall simulate real-time parking availability using zone/time rules.
+- The system shall show estimated availability using color-coded indicators (e.g., green, yellow, red).
+- The system shall update simulated availability data every 60 seconds.
+
+### FR-03: EV Charging Filter
+- The system shall allow users to apply a filter to show only EV-compatible parking locations.
+- The system shall identify EV-compatible locations using metadata from Places API or OpenStreetMap.
+
+### FR-04: Navigation Integration
+- The system shall provide routing from user location to selected parking using Google Directions API.
+- The system shall include estimated travel time and distance.
+
+### FR-05: Interactive Map Display
+- The system shall display search results on a map interface.
+- The system shall allow users to click on markers to view parking details.
+- The map shall auto-zoom to fit search results.
+
+### FR-06: UI Requirements
+- The system shall provide a responsive web interface accessible via desktop and mobile.
+- The interface shall include:
+  - Search input
+  - Filter options (EV charger, zone)
+  - Map view
+  - Details panel for selected parking
+
+---
+
+## 4. External Interfaces
+- **Google Maps Places API**: To retrieve parking facility metadata.
+- **Google Directions API**: To calculate and display navigation routes.
+- **Firebase**: For backend logic and data simulation.
+
+---
+
+## 5. Priority
+| Requirement ID | Priority  |
+|----------------|-----------|
+| FR-01          | High      |
+| FR-02          | High      |
+| FR-03          | Medium    |
+| FR-04          | High      |
+| FR-05          | High      |
+| FR-06          | Medium    |
+
+---
+
+## 6. Dependencies
+- Availability of Google Maps API services
+- Access to simulated parking data engine
+- Compatibility with modern browsers
+
+---
+
+## 7. Future Considerations
+- Integration with real sensor data
+- User authentication and saved preferences
+- Analytics dashboard for B2B clients
+
