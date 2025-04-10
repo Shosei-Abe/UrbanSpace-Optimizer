@@ -1,0 +1,108 @@
+Urban Space Optimizer — Requirement Specification Document
+
+1. Project Overview
+
+Urban Space Optimizer is a smart parking and urban mobility platform developed to optimize the use of urban parking spaces, reduce traffic congestion, and enhance sustainability in city environments. This specification defines the functional and non-functional requirements for the PoC phase of the system in Budapest.
+
+2. Goals and Objectives
+
+Enable users to search and locate available parking zones and facilities
+
+Provide basic availability forecasts based on time and location
+
+Filter parking options by EV charger compatibility
+
+Deliver navigation to selected parking spots with traffic considerations
+
+3. Target Users
+
+Urban commuters and residents (general users)
+
+Municipal partners and potential B2B clients (pilot phase)
+
+4. Functional Requirements
+
+4.1 Parking Search
+
+The system shall allow users to search for parking near a specific location
+
+The system shall fetch parking facility data from the Google Maps Places API
+
+The system shall display search results on an interactive map
+
+4.2 Availability Estimation
+
+The system shall simulate real-time parking availability using rule-based models
+
+The system shall display estimated availability per zone and time of day
+
+4.3 EV Charger Filtering
+
+The system shall allow users to filter parking results by EV charger availability
+
+The system shall fetch metadata from Places API and/or OSM to determine compatibility
+
+4.4 Navigation
+
+The system shall integrate with Google Directions API to provide routing
+
+The system shall consider live traffic conditions when displaying routes
+
+4.5 UI/UX
+
+The system shall provide an intuitive and responsive interface for web access
+
+The UI shall include screens for search, filters, map results, and routing
+
+5. Non-Functional Requirements
+
+5.1 Performance
+
+The system shall return search results within 3 seconds
+
+The occupancy simulation engine shall update data every 60 seconds
+
+5.2 Availability
+
+The system shall be available 95% of the time during the PoC period
+
+5.3 Scalability
+
+The backend shall be designed to support extension with live sensor data
+
+The architecture shall allow easy expansion to additional cities and languages
+
+5.4 Security
+
+API keys and credentials shall be securely stored and not exposed client-side
+
+User input (e.g., search queries) shall be sanitized
+
+5.5 Compliance
+
+The system shall comply with GDPR requirements for data privacy
+
+6. System Constraints
+
+No real-time sensor data will be used during the PoC phase
+
+All real-time availability data will be simulated
+
+Only Google APIs and open datasets will be used (due to budget constraints)
+
+7. Assumptions
+
+Users have access to the internet and modern web browsers
+
+Google Maps API services are reliably available during the PoC
+
+8. Deliverables
+
+Fully functional web-based prototype
+
+Simulated data engine for real-time-like availability
+
+Initial wireframe set and technical documentation
+
+Student Progress Report and 3-minute project video
+
