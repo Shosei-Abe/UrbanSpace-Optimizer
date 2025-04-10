@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_KEY = 'AIzaSyACRhy6iJo1obR2Afe-qTy6jaqOpVZKpl4'; // ← あなたのAPIキーに置き換えてね
+const API_KEY = 'API key'; // ← あなたのAPIキーに置き換えてね
 const location = '47.4979,19.0402'; // Budapest中心
 const radius = 1000; // 単位：メートル
 const type = 'parking';
