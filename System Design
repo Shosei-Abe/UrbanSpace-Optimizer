@@ -1,142 +1,153 @@
-Urban Space Optimizer — System Design Document
+# Urban Space Optimizer — System Design Document
 
-1. Overview
-
+## 1. Overview
 Urban Space Optimizer is a smart parking and urban mobility platform designed to reduce congestion, optimize parking utilization, and support sustainable urban planning. This document outlines the technical architecture, components, data flow, and system requirements for the Proof of Concept (PoC) implementation in Budapest.
 
-2. Objectives
+---
 
-Provide a data-driven parking search and navigation experience
+## 2. Objectives
+- Provide a data-driven parking search and navigation experience
+- Forecast parking occupancy using time/location-based modeling
+- Integrate real-world APIs for routing and facility data
+- Support filtering for EV-compatible parking facilities
 
-Forecast parking occupancy using time/location-based modeling
+---
 
-Integrate real-world APIs for routing and facility data
+## 3. System Architecture
 
-Support filtering for EV-compatible parking facilities
+### 3.1 Architecture Type
+- Cloud-native microservice architecture (for PoC: simplified serverless design)
 
-3. System Architecture
+### 3.2 Components
+- **Frontend:** React (or Figma prototype) SPA for user interaction
+- **Backend:** Firebase Functions / Firestore (data storage and logic)
+- **External APIs:**
+  - Google Maps Places API (facility data)
+  - Google Directions API (navigation)
+  - Google Traffic API (congestion layer)
+- **Data Simulation Module:** Generates real-time-like parking data based on time-of-day and zone rules
+- **Occupancy Prediction Module:** Simple rule-based logic for availability forecasting
 
-3.1 Architecture Type
+### 3.3 Deployment Stack
+| Component       | Technology          |
+|----------------|---------------------|
+| Frontend       | React / Vite        |
+| Backend        | Firebase Functions  |
+| Database       | Firebase Firestore  |
+| Hosting        | Firebase Hosting    |
+| APIs           | Google Maps Suite   |
 
-Cloud-native microservice architecture (for PoC: simplified serverless design)
+---
 
-3.2 Components
-
-Frontend: React (or Figma prototype) SPA for user interaction
-
-Backend: Firebase Functions / Firestore (data storage and logic)
-
-External APIs:
-
-Google Maps Places API (facility data)
-
-Google Directions API (navigation)
-
-Google Traffic API (congestion layer)
-
-Data Simulation Module: Generates real-time-like parking data based on time-of-day and zone rules
-
-Occupancy Prediction Module: Simple rule-based logic for availability forecasting
-
-3.3 Deployment Stack
-
-Component
-
-Technology
-
-Frontend
-
-React / Vite
-
-Backend
-
-Firebase Functions
-
-Database
-
-Firebase Firestore
-
-Hosting
-
-Firebase Hosting
-
-APIs
-
-Google Maps Suite
-
-4. Data Flow Diagram (High-Level)
-
-[User]
-  |
-  v
+## 4. Data Flow Diagram (High-Level)
+```
+[User] 
+  | 
+  v 
 [Frontend App (React)] --> [Backend (Firebase)] --> [Firestore DB / Prediction Module]
   |                                  |
   v                                  v
 [Google Maps API]         [Simulated Data Engine]
+```
 
-5. Key Functional Modules
+---
 
-5.1 Parking Search Interface
+## 5. Key Functional Modules
 
-Users input location or allow geolocation access
+### 5.1 Parking Search Interface
+- Users input location or allow geolocation access
+- Fetches parking facilities via Places API
+- Displays results with availability indicators
 
-Fetches parking facilities via Places API
+### 5.2 Occupancy Prediction
+- Rule-based logic (e.g., high demand in Zone A from 9am to 6pm)
+- Can be enhanced with ML models later
 
-Displays results with availability indicators
+### 5.3 EV Filter
+- Uses metadata from Places API / manual tagging to identify EV-compatible locations
 
-5.2 Occupancy Prediction
+### 5.4 Navigation Integration
+- Uses Directions API to provide routes
+- Includes congestion data if needed
 
-Rule-based logic (e.g., high demand in Zone A from 9am to 6pm)
+---
 
-Can be enhanced with ML models later
+## 6. Assumptions and Constraints
+- Real-time parking data is simulated (no live sensors)
+- PoC is focused on Budapest downtown (Zones A, B)
+- Limited to Google APIs due to time and budget constraints
 
-5.3 EV Filter
+---
 
-Uses metadata from Places API / manual tagging to identify EV-compatible locations
+## 7. Future Enhancements
+- Integrate IoT sensor data (ultrasonic, magnetometers)
+- Replace rule-based model with ML-based prediction engine
+- Add account-based features and analytics dashboard
+- Extend to multiple cities and languages
 
-5.4 Navigation Integration
+---
 
-Uses Directions API to provide routes
+## 8. Team & Roles
+- **Shosei Abe:** Project Owner, System Designer
+- [Member 2]: Frontend Developer
+- [Member 3]: Data Logic / API Integration
 
-Includes congestion data if needed
+---
 
-6. Assumptions and Constraints
+## 9. Version History
+| Date       | Version | Description               |
+|------------|---------|---------------------------|
+| 2025-04-12 | 1.0     | Initial system design (PoC)|
 
-Real-time parking data is simulated (no live sensors)
+---
 
-PoC is focused on Budapest downtown (Zones A, B)
+## 10. URL Diagram (Page-Level Navigation)
+```
+/                  → Home Page
+/search            → Parking Search with input/filter
+/map               → Interactive Map with results
+/parking/:id       → Parking Detail View
+/navigation        → Route Display with Directions API
+```
 
-Limited to Google APIs due to time and budget constraints
+---
 
-7. Future Enhancements
+## 11. Use Case Diagram (Text-Based Description)
+```
+Actor: User
 
-Integrate IoT sensor data (ultrasonic, magnetometers)
+Use Cases:
+- Search for parking → [Search Page]
+- Filter by EV support → [Search Filter Component]
+- View results on map → [Map Page]
+- Select parking location → [Detail View]
+- Navigate to location → [Route Display Page]
+```
 
-Replace rule-based model with ML-based prediction engine
-
-Add account-based features and analytics dashboard
-
-Extend to multiple cities and languages
-
-8. Team & Roles
-
-Shosei Abe: Project Owner, System Designer
-
-[Member 2]: Frontend Developer
-
-[Member 3]: Data Logic / API Integration
-
-9. Version History
-
-Date
-
-Version
-
-Description
-
-2025-04-12
-
-1.0
-
-Initial system design (PoC)
+System Interfaces:
+- Google Maps Places API
+- Google Directions API
+- Firebase Functions
+```
+       +-------+
+       | User  |
+       +---+---+
+           |
+           | Search Parking
+           v
+     +-----+-----+
+     |  UI (SPA)  |
+     +-----+-----+
+           |
+           | Calls API / Shows Map
+           v
+   +---------------+
+   | Firebase/API  |
+   +---------------+
+           |
+           v
+    +---------------+
+    | Google APIs   |
+    +---------------+
+```
 
