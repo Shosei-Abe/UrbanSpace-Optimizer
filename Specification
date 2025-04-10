@@ -1,0 +1,81 @@
+# Urban Space Optimizer — Specification Document
+
+## 1. Introduction
+
+### 1.1 Purpose
+This specification document describes the detailed design, behavior, and functionality of the Urban Space Optimizer PoC system. It serves as a guide for implementation and testing.
+
+### 1.2 Scope
+The system is designed to help users locate, filter, and navigate to parking spaces in Budapest. It uses publicly available APIs and simulated data for real-time-like functionality.
+
+---
+
+## 2. System Features
+
+### 2.1 Parking Search
+- Keyword or location-based search
+- Retrieves parking facilities using Google Maps Places API
+
+### 2.2 Availability Estimation
+- Simulates real-time occupancy using rules based on time and location
+- Color-coded status (green, yellow, red)
+
+### 2.3 EV Charger Filtering
+- Filters only locations with EV charger availability
+- Data from Places API or OpenStreetMap tags
+
+### 2.4 Navigation
+- Route generation via Google Directions API
+- Travel time, distance, and traffic estimation
+
+### 2.5 Interactive Map
+- Displays search results and routing on an embedded map
+- Allows marker interaction for parking details
+
+---
+
+## 3. Architecture Overview
+- **Frontend:** React (SPA)
+- **Backend:** Firebase Functions
+- **Database:** Firebase Firestore
+- **APIs:** Google Maps Places, Directions, Traffic
+
+---
+
+## 4. User Interface Description
+- **Home Screen**: Search bar, EV filter, current location access
+- **Results Screen**: Interactive map with parking markers
+- **Details Panel**: Facility name, availability, distance, navigation button
+
+---
+
+## 5. Data Specifications
+
+| Data Element       | Type     | Source                     | Notes                               |
+|--------------------|----------|-----------------------------|-------------------------------------|
+| Parking Facilities | JSON     | Google Maps Places API      | Includes name, location, tags       |
+| EV Stations        | Boolean  | Places API / OSM            | Derived from metadata/tags          |
+| Simulated Occupancy| Integer  | Firebase Function            | Updated per time rules (e.g. hourly)|
+| Routing Data       | JSON     | Google Directions API        | Includes route steps, distance, ETA |
+
+---
+
+## 6. Assumptions and Limitations
+- No real-time sensor data is available during the PoC
+- Map display assumes constant API availability
+- EV compatibility accuracy depends on external metadata
+
+---
+
+## 7. Performance Requirements
+- UI should respond within 2 seconds for most interactions
+- API responses should be cached for efficiency when possible
+
+---
+
+## 8. Future Extensions
+- ML-based occupancy prediction
+- User authentication and favorites
+- Real-time sensor data integration
+- Admin dashboard for B2B users
+
