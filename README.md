@@ -52,8 +52,8 @@ A 3-minute video summary of the project is available [link placeholder].
 ## 🧑‍💻 Team
 
 - **Shosei Abe** – Project Owner, Eszterházy Károly Catholic University  
-- [Teammate Name] – [Role], [University]  
-- [Teammate Name] – [Role], [University]
+- Shosei Abe – Project leader, software development, Eszterhazy Karoly Catholic University  
+- Ramawickrama Gamachchige Prabuddhika Sandamini – Urban engineering, University of Debrecen
 
 ## 📍 Target City
 
