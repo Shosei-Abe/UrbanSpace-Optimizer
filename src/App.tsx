@@ -107,7 +107,13 @@ function App() {
             <p className="mt-2 text-gray-600">Please sign in to continue</p>
           </div>
           <div className="space-y-6">
-            <SignIn routing="path" path="/sign-in" afterSignInUrl="/" />
+            <SignIn 
+              routing="path" 
+              path="/sign-in" 
+              afterSignInUrl="/"
+              redirectUrl="/"
+              signUpUrl="/sign-up"
+            />
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
@@ -134,7 +140,13 @@ function App() {
             <p className="mt-2 text-gray-600">Join SmartCurb to manage your spaces</p>
           </div>
           <div className="space-y-6">
-            <SignUp routing="path" path="/sign-up" afterSignUpUrl="/" />
+            <SignUp 
+              routing="path" 
+              path="/sign-up" 
+              afterSignUpUrl="/"
+              redirectUrl="/"
+              signInUrl="/sign-in"
+            />
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{' '}
