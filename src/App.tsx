@@ -22,8 +22,9 @@ function App() {
   const { isLoaded, isSignedIn } = useAuth();
   const { user } = useUser();
   const [darkMode, setDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState<'hero' | 'main' | 'subscription' | 'success' | 'signup' | 'login'>('hero');
+  const [currentView, setCurrentView] = useState<'hero' | 'main' | 'subscription' | 'success' | 'auth'>('hero');
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [authMode, setAuthMode] = useState<'sign-in' | 'sign-up'>('sign-in');
 
   useEffect(() => {
     // Check for dark mode preference
@@ -95,66 +96,45 @@ function App() {
   }
 
   if (currentView === 'hero') {
-    return <HeroPage onGetStarted={() => setCurrentView('login')} />;
+    return <HeroPage onGetStarted={() => setCurrentView('auth')} />;
   }
 
-  if (!isSignedIn && (currentView === 'main' || currentView === 'login')) {
+  if (!isSignedIn && currentView === 'auth') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900">Welcome to SmartCurb</h2>
-            <p className="mt-2 text-gray-600">Please sign in to continue</p>
+            <p className="mt-2 text-gray-600">
+              {authMode === 'sign-in' ? 'Sign in to continue' : 'Create your account'}
+            </p>
           </div>
           <div className="space-y-6">
-            <SignIn 
-              routing="path" 
-              path="/sign-in" 
-              afterSignInUrl="/"
-              redirectUrl="/"
-              signUpUrl="/sign-up"
-            />
+            {authMode === 'sign-in' ? (
+              <SignIn 
+                routing="path" 
+                path="/sign-in" 
+                afterSignInUrl="/"
+                redirectUrl="/"
+                signUpUrl="/sign-up"
+              />
+            ) : (
+              <SignUp 
+                routing="path" 
+                path="/sign-up" 
+                afterSignUpUrl="/"
+                redirectUrl="/"
+                signInUrl="/sign-in"
+              />
+            )}
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
+                {authMode === 'sign-in' ? "Don't have an account? " : "Already have an account? "}
                 <button
-                  onClick={() => setCurrentView('signup')}
+                  onClick={() => setAuthMode(authMode === 'sign-in' ? 'sign-up' : 'sign-in')}
                   className="text-blue-600 hover:text-blue-500 font-medium"
                 >
-                  Sign up
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (currentView === 'signup') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
-        <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
-            <p className="mt-2 text-gray-600">Join SmartCurb to manage your spaces</p>
-          </div>
-          <div className="space-y-6">
-            <SignUp 
-              routing="path" 
-              path="/sign-up" 
-              afterSignUpUrl="/"
-              redirectUrl="/"
-              signInUrl="/sign-in"
-            />
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Already have an account?{' '}
-                <button
-                  onClick={() => setCurrentView('login')}
-                  className="text-blue-600 hover:text-blue-500 font-medium"
-                >
-                  Sign in
+                  {authMode === 'sign-in' ? 'Sign up' : 'Sign in'}
                 </button>
               </p>
             </div>
