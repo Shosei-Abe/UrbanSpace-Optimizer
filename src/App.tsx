@@ -22,7 +22,7 @@ function App() {
   const { isLoaded, isSignedIn } = useAuth();
   const { user } = useUser();
   const [darkMode, setDarkMode] = useState(false);
-  const [currentView, setCurrentView] = useState<'hero' | 'main' | 'subscription' | 'success' | 'signup'>('hero');
+  const [currentView, setCurrentView] = useState<'hero' | 'main' | 'subscription' | 'success' | 'signup' | 'login'>('hero');
   const [activeTab, setActiveTab] = useState('dashboard');
 
   useEffect(() => {
@@ -35,7 +35,12 @@ function App() {
     if (urlParams.get('success') === 'true') {
       setCurrentView('success');
     }
-  }, []);
+
+    // If user is signed in, show main app
+    if (isSignedIn) {
+      setCurrentView('main');
+    }
+  }, [isSignedIn]);
 
   const handleAuthSuccess = () => {
     setCurrentView('main');
@@ -90,10 +95,10 @@ function App() {
   }
 
   if (currentView === 'hero') {
-    return <HeroPage onGetStarted={() => setCurrentView('signup')} />;
+    return <HeroPage onGetStarted={() => setCurrentView('login')} />;
   }
 
-  if (!isSignedIn && currentView === 'main') {
+  if (!isSignedIn && (currentView === 'main' || currentView === 'login')) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
@@ -102,7 +107,7 @@ function App() {
             <p className="mt-2 text-gray-600">Please sign in to continue</p>
           </div>
           <div className="space-y-6">
-            <SignIn routing="path" path="/sign-in" />
+            <SignIn routing="path" path="/sign-in" afterSignInUrl="/" />
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
@@ -129,12 +134,12 @@ function App() {
             <p className="mt-2 text-gray-600">Join SmartCurb to manage your spaces</p>
           </div>
           <div className="space-y-6">
-            <SignUp routing="path" path="/sign-up" />
+            <SignUp routing="path" path="/sign-up" afterSignUpUrl="/" />
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{' '}
                 <button
-                  onClick={() => setCurrentView('main')}
+                  onClick={() => setCurrentView('login')}
                   className="text-blue-600 hover:text-blue-500 font-medium"
                 >
                   Sign in
