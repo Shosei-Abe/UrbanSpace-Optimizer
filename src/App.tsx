@@ -96,7 +96,11 @@ function App() {
   }
 
   if (currentView === 'hero') {
-    return <HeroPage onGetStarted={() => setCurrentView('auth')} />;
+    return (
+      <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+        <HeroPage onGetStarted={() => setCurrentView('auth')} />
+      </div>
+    );
   }
 
   if (!isSignedIn && currentView === 'auth') {
@@ -129,7 +133,7 @@ function App() {
             )}
             <div className="text-center">
               <p className="text-sm text-gray-600">
-                {authMode === 'sign-in' ? "Don't have an account? " : "Already have an account? "}
+                {authMode === 'sign-in' ? "Don't have an account?" : "Already have an account?"}{' '}
                 <button
                   onClick={() => setAuthMode(authMode === 'sign-in' ? 'sign-up' : 'sign-in')}
                   className="text-blue-600 hover:text-blue-500 font-medium"
@@ -152,6 +156,7 @@ function App() {
     return <SubscriptionSuccess onContinue={handleBackToDashboard} />;
   }
 
+  // Main app view
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
       <Header 
