@@ -39,10 +39,12 @@ function App() {
 
   const handleAuthSuccess = () => {
     setCurrentView('main');
+    setActiveTab('dashboard');
   };
 
   const handleBackToDashboard = () => {
     setCurrentView('main');
+    setActiveTab('dashboard');
   };
 
   const handleDarkModeToggle = () => {
@@ -59,11 +61,11 @@ function App() {
         return <ParkingEVTab spaces={mockSpaces} />;
       case 'delivery':
         return <DeliveryTab spaces={mockSpaces} />;
-      case 'school-dropoff':
+      case 'school-drop':
         return <SchoolDropoffTab spaces={mockSpaces} />;
       case 'cycling':
         return <CyclingTab spaces={mockSpaces} />;
-      case 'waste-collection':
+      case 'trash-collection':
         return <WasteCollectionTab spaces={mockSpaces} />;
       case 'congestion':
         return <CongestionTab spaces={mockSpaces} />;
@@ -88,7 +90,7 @@ function App() {
   }
 
   if (currentView === 'hero') {
-    return <HeroPage onGetStarted={handleAuthSuccess} />;
+    return <HeroPage onGetStarted={() => setCurrentView('signup')} />;
   }
 
   if (!isSignedIn && currentView === 'main') {
@@ -158,7 +160,10 @@ function App() {
       <Header 
         onSubscriptionClick={() => setCurrentView('subscription')}
         onLogout={() => setCurrentView('hero')}
-        onHomeClick={() => setCurrentView('main')}
+        onHomeClick={() => {
+          setCurrentView('main');
+          setActiveTab('dashboard');
+        }}
         darkMode={darkMode}
         onDarkModeChange={handleDarkModeToggle}
       />
