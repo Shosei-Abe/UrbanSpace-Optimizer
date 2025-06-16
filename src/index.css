@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Map expand/fullscreen styles */
+.map-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+}
+
+.map-fullscreen .map-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+/* Settings styles */
+:root {
+  --primary-color: #2563EB;
+}
+
+.no-animations * {
+  transition: none !important;
+  animation: none !important;
+}
+
+.compact-mode {
+  --spacing-base: 0.75rem;
+}
+
+.compact-mode .p-6 {
+  padding: var(--spacing-base);
+}
+
+.compact-mode .space-y-6 > * {
+  margin-top: var(--spacing-base);
+  margin-bottom: var(--spacing-base);
+}
+
+/* Language specific fonts */
+html[lang="ja"] body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+html[lang="zh"] body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/* Currency formatting */
+.currency-usd::before {
+  content: "$";
+}
+
+.currency-eur::before {
+  content: "€";
+}
+
+.currency-gbp::before {
+  content: "£";
+}
+
+.currency-huf::before {
+  content: "";
+}
+
+.currency-huf::after {
+  content: " Ft";
+}
+
+.currency-jpy::before {
+  content: "¥";
+}
+
+.currency-cny::before {
+  content: "¥";
+}
