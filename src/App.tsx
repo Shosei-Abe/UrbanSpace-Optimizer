@@ -95,6 +95,29 @@ function App() {
     );
   }
 
+  // If user is signed in, show main app
+  if (isSignedIn) {
+    return (
+      <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+        <Header 
+          onSubscriptionClick={() => setCurrentView('subscription')}
+          onLogout={() => setCurrentView('hero')}
+          onHomeClick={() => {
+            setCurrentView('main');
+            setActiveTab('dashboard');
+          }}
+          darkMode={darkMode}
+          onDarkModeChange={handleDarkModeToggle}
+        />
+        <Navigation activeTab={activeTab} onTabChange={setActiveTab} darkMode={darkMode} />
+        <main className="p-6">
+          {renderContent()}
+        </main>
+      </div>
+    );
+  }
+
+  // Show Hero page for non-authenticated users
   if (currentView === 'hero') {
     return (
       <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
@@ -103,7 +126,8 @@ function App() {
     );
   }
 
-  if (!isSignedIn && currentView === 'auth') {
+  // Show Auth page for non-authenticated users
+  if (currentView === 'auth') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
@@ -156,23 +180,10 @@ function App() {
     return <SubscriptionSuccess onContinue={handleBackToDashboard} />;
   }
 
-  // Main app view
+  // Default to Hero page
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      <Header 
-        onSubscriptionClick={() => setCurrentView('subscription')}
-        onLogout={() => setCurrentView('hero')}
-        onHomeClick={() => {
-          setCurrentView('main');
-          setActiveTab('dashboard');
-        }}
-        darkMode={darkMode}
-        onDarkModeChange={handleDarkModeToggle}
-      />
-      <Navigation activeTab={activeTab} onTabChange={setActiveTab} darkMode={darkMode} />
-      <main className="p-6">
-        {renderContent()}
-      </main>
+      <HeroPage onGetStarted={() => setCurrentView('auth')} />
     </div>
   );
 }
