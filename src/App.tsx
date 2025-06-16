@@ -143,12 +143,10 @@ function App() {
         onSubscriptionClick={() => setCurrentView('subscription')}
         onHomeClick={() => setCurrentView('main')}
       />
-      <div className="flex">
-        <Navigation activeTab={activeTab} onTabChange={setActiveTab} darkMode={darkMode} />
-        <main className="flex-1 p-6">
-          {renderContent()}
-        </main>
-      </div>
+      <Navigation activeTab={activeTab} onTabChange={setActiveTab} darkMode={darkMode} />
+      <main className="p-6">
+        {renderContent()}
+      </main>
     </div>
   );
 }
