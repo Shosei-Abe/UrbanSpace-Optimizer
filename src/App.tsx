@@ -21,28 +21,16 @@ import { mockSpaces, mockAnalytics } from './data/mockData';
 function App() {
   const { isLoaded, isSignedIn } = useAuth();
   const { user } = useUser();
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedSpace, setSelectedSpace] = useState<CurbsideSpace | null>(null);
-  const [currentView, setCurrentView] = useState('main');
   const [darkMode, setDarkMode] = useState(false);
+  const [currentView, setCurrentView] = useState<'hero' | 'main' | 'subscription' | 'success' | 'signup'>('hero');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode) {
-      setDarkMode(savedDarkMode === 'true');
-    }
-  }, []);
+    // Check for dark mode preference
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(isDarkMode);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('darkMode', darkMode.toString());
-  }, [darkMode]);
-
-  useEffect(() => {
+    // Check URL parameters for success state
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
       setCurrentView('success');
@@ -53,34 +41,36 @@ function App() {
     setCurrentView('main');
   };
 
-  const handleLogout = () => {
-    setCurrentView('hero');
-  };
-
   const handleBackToDashboard = () => {
     setCurrentView('main');
   };
 
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
+      case 'dashboard':
+        return <Dashboard analytics={mockAnalytics} />;
       case 'parking':
         return <ParkingTab spaces={mockSpaces} />;
       case 'parking-ev':
         return <ParkingEVTab spaces={mockSpaces} />;
       case 'delivery':
         return <DeliveryTab spaces={mockSpaces} />;
-      case 'school':
+      case 'school-dropoff':
         return <SchoolDropoffTab spaces={mockSpaces} />;
       case 'cycling':
         return <CyclingTab spaces={mockSpaces} />;
-      case 'waste':
+      case 'waste-collection':
         return <WasteCollectionTab spaces={mockSpaces} />;
       case 'congestion':
         return <CongestionTab spaces={mockSpaces} />;
       case 'users':
         return <UsersTab />;
       case 'settings':
-        return <SettingsTab darkMode={darkMode} onDarkModeChange={setDarkMode} />;
+        return <SettingsTab darkMode={darkMode} onDarkModeChange={handleDarkModeToggle} />;
       default:
         return <Dashboard analytics={mockAnalytics} />;
     }
@@ -103,23 +93,52 @@ function App() {
 
   if (!isSignedIn && currentView === 'main') {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
+        <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900">Welcome to SmartCurb</h2>
             <p className="mt-2 text-gray-600">Please sign in to continue</p>
           </div>
-          <SignIn routing="path" path="/sign-in" />
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <button
-                onClick={() => setCurrentView('signup')}
-                className="text-blue-600 hover:text-blue-500 font-medium"
-              >
-                Sign up
-              </button>
-            </p>
+          <div className="space-y-6">
+            <SignIn routing="path" path="/sign-in" />
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Don't have an account?{' '}
+                <button
+                  onClick={() => setCurrentView('signup')}
+                  className="text-blue-600 hover:text-blue-500 font-medium"
+                >
+                  Sign up
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentView === 'signup') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
+        <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-xl p-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
+            <p className="mt-2 text-gray-600">Join SmartCurb to manage your spaces</p>
+          </div>
+          <div className="space-y-6">
+            <SignUp routing="path" path="/sign-up" />
+            <div className="text-center">
+              <p className="text-sm text-gray-600">
+                Already have an account?{' '}
+                <button
+                  onClick={() => setCurrentView('main')}
+                  className="text-blue-600 hover:text-blue-500 font-medium"
+                >
+                  Sign in
+                </button>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -136,12 +155,12 @@ function App() {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      <Header
-        onLogout={handleLogout}
-        darkMode={darkMode}
-        onDarkModeChange={setDarkMode}
+      <Header 
         onSubscriptionClick={() => setCurrentView('subscription')}
+        onLogout={() => setCurrentView('hero')}
         onHomeClick={() => setCurrentView('main')}
+        darkMode={darkMode}
+        onDarkModeChange={handleDarkModeToggle}
       />
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} darkMode={darkMode} />
       <main className="p-6">
