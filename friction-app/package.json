@@ -1,0 +1,33 @@
+{
+  "name": "friction-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^6.36.7",
+    "@clerk/themes": "^2.4.47",
+    "@elevenlabs/react": "^0.12.3",
+    "@stripe/react-stripe-js": "^5.4.1",
+    "@stripe/stripe-js": "^8.6.1",
+    "framer-motion": "^12.25.0",
+    "next": "16.1.1",
+    "plaid": "^41.0.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-plaid-link": "^4.1.1",
+    "stripe": "^20.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "typescript": "^5"
+  }
+}

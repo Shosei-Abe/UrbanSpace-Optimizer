@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friction</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      width: 320px;
+      padding: 20px;
+      background: linear-gradient(135deg, #12121a 0%, #1a1a25 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #f9fafb;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s infinite;
+    }
+    
+    .status-dot.inactive {
+      background: #f59e0b;
+      animation: none;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .status-text {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+    
+    .status-text strong {
+      color: #f9fafb;
+    }
+    
+    .section {
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    
+    .input-group {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .input {
+      flex: 1;
+      padding: 10px 12px;
+      background: rgba(26, 26, 37, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #f9fafb;
+      font-size: 14px;
+    }
+    
+    .input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    
+    .btn {
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+    
+    .btn-block {
+      width: 100%;
+      margin-top: 12px;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .footer a {
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .message {
+      padding: 8px 12px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 6px;
+      color: #10b981;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+    }
+    
+    .message.show {
+      display: block;
+    }
+    
+    .message.error {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">Friction</div>
+  </div>
+  
+  <div class="status" id="status">
+    <div class="status-dot inactive" id="status-dot"></div>
+    <div class="status-text" id="status-text">
+      <strong>Not connected</strong>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">Your User ID</div>
+    <div class="input-group">
+      <input type="text" class="input" id="userId" placeholder="Paste your user ID">
+      <button class="btn btn-primary" id="save">Save</button>
+    </div>
+    <div class="message" id="message"></div>
+  </div>
+  
+  <div class="footer">
+    <a href="http://localhost:3000/dashboard" target="_blank">Open Dashboard</a>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
