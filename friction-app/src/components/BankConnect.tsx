@@ -17,9 +17,10 @@ export default function BankConnect() {
             }
             const data = await response.json();
             setToken(data.link_token);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Link Token Error:", err);
-            setError(err.message || "Failed to initialize Plaid");
+            const message = err instanceof Error ? err.message : "Failed to initialize Plaid";
+            setError(message);
         } finally {
             setLoading(false);
         }

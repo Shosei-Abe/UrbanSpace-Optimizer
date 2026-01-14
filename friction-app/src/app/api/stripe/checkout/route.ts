@@ -26,10 +26,11 @@ export async function POST(req: Request) {
         });
 
         return NextResponse.json({ sessionId: session.id, url: session.url });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error creating checkout session:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Internal Server Error';
         return NextResponse.json(
-            { error: error.message || 'Internal Server Error' },
+            { error: errorMessage },
             { status: 500 }
         );
     }

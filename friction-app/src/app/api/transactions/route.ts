@@ -49,6 +49,7 @@ export async function GET(request: Request) {
             // For demo, we might want to just return real ones + some mock warnings
             // Let's filter out old mock 'bank-import' transactions to avoid duplication if we persist
             const existingExtensions = transactions.filter(t => t.source === 'browser-extension');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             transactions = [...(realTransactions as any), ...existingExtensions];
 
         } catch (error) {

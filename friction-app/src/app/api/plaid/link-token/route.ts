@@ -3,7 +3,8 @@ import { plaidClient } from '@/lib/plaid';
 import { CountryCode, Products } from 'plaid';
 import { auth } from '@clerk/nextjs/server';
 
-export async function POST(req: Request) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function POST(_req: Request) {
     try {
         const { userId } = await auth();
 
@@ -16,13 +17,15 @@ export async function POST(req: Request) {
             client_name: 'Friction App',
             products: [Products.Auth, Products.Transactions],
             language: 'en',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             country_codes: ['US', 'CA', 'GB'] as any,
         };
 
         const createTokenResponse = await plaidClient.linkTokenCreate(request);
         return NextResponse.json(createTokenResponse.data);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error creating link token:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }
