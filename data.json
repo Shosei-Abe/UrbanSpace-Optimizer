@@ -2,119 +2,53 @@
   "transactions": {
     "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ": [
       {
-        "id": "v9aa9gxoer",
+        "id": "tuwhg7ged99",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-14",
-        "merchant": "YouTube Premium",
-        "amount": 95.49,
+        "date": "2026-01-16",
+        "merchant": "Netflix",
+        "amount": 135.03,
         "type": "one-time",
         "category": "Entertainment",
         "outcome": "completed",
         "source": "bank-import"
       },
       {
-        "id": "lk7731zehgd",
+        "id": "ta984uk11mo",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2026-01-16",
+        "merchant": "Zara",
+        "amount": 41.39,
+        "type": "one-time",
+        "category": "Clothes",
+        "outcome": "completed",
+        "source": "browser-extension"
+      },
+      {
+        "id": "6wxwf42da3f",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
         "date": "2026-01-13",
-        "merchant": "YouTube Premium",
-        "amount": 119.4,
+        "merchant": "Deliveroo",
+        "amount": 26.88,
         "type": "blocked-attempt",
-        "category": "Entertainment",
+        "category": "Food Delivery",
         "outcome": "blocked",
         "source": "browser-extension"
       },
       {
-        "id": "ov6oksbqfpj",
+        "id": "gdjqvl6uk3l",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-09",
-        "merchant": "Zalando",
-        "amount": 74.12,
-        "type": "blocked-attempt",
-        "category": "Clothes",
-        "outcome": "blocked",
-        "source": "browser-extension"
-      },
-      {
-        "id": "ztcezwf54jc",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-09",
-        "merchant": "Zara",
-        "amount": 94.88,
-        "type": "one-time",
-        "category": "Clothes",
-        "outcome": "completed",
-        "source": "browser-extension"
-      },
-      {
-        "id": "rctc0fz02a",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-08",
+        "date": "2026-01-10",
         "merchant": "YouTube Premium",
-        "amount": 96.9,
-        "type": "one-time",
-        "category": "Entertainment",
-        "outcome": "completed",
-        "source": "bank-import"
-      },
-      {
-        "id": "bbrjwqip7vd",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-07",
-        "merchant": "Adobe",
-        "amount": 66.74,
-        "type": "one-time",
-        "category": "Software",
-        "outcome": "completed",
-        "source": "browser-extension"
-      },
-      {
-        "id": "i2hg4635e3",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-06",
-        "merchant": "Netflix",
-        "amount": 15.99,
+        "amount": 11.99,
         "type": "subscription",
         "category": "Entertainment",
         "outcome": "completed",
         "source": "bank-import"
       },
       {
-        "id": "mamdb9qh3jn",
+        "id": "azt4ns9jsl",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-05",
-        "merchant": "Amazon",
-        "amount": 73.55,
-        "type": "one-time",
-        "category": "Shopping",
-        "outcome": "completed",
-        "source": "bank-import"
-      },
-      {
-        "id": "vuifqwpifk",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-02",
-        "merchant": "Amazon",
-        "amount": 32.98,
-        "type": "one-time",
-        "category": "Shopping",
-        "outcome": "completed",
-        "source": "bank-import"
-      },
-      {
-        "id": "1hfnexow3y",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2026-01-02",
-        "merchant": "Zara",
-        "amount": 62.95,
-        "type": "blocked-attempt",
-        "category": "Clothes",
-        "outcome": "blocked",
-        "source": "browser-extension"
-      },
-      {
-        "id": "kvmly8668h",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2025-12-31",
+        "date": "2026-01-07",
         "merchant": "Spotify",
         "amount": 9.99,
         "type": "subscription",
@@ -123,42 +57,53 @@
         "source": "bank-import"
       },
       {
-        "id": "6p21rroc4km",
+        "id": "cyu64u3wt8b",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2026-01-07",
+        "merchant": "Deliveroo",
+        "amount": 74.68,
+        "type": "one-time",
+        "category": "Food Delivery",
+        "outcome": "completed",
+        "source": "bank-import"
+      },
+      {
+        "id": "cq38wtxrzqg",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2026-01-06",
+        "merchant": "Dropbox",
+        "amount": 59.96,
+        "type": "one-time",
+        "category": "Software",
+        "outcome": "completed",
+        "source": "bank-import"
+      },
+      {
+        "id": "tjzs8zp1r6",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2026-01-04",
+        "merchant": "Zalando",
+        "amount": 127.13,
+        "type": "blocked-attempt",
+        "category": "Clothes",
+        "outcome": "blocked",
+        "source": "browser-extension"
+      },
+      {
+        "id": "gfzgd1bnucv",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
         "date": "2025-12-31",
-        "merchant": "Apple",
-        "amount": 43.79,
-        "type": "one-time",
-        "category": "Gadgets",
-        "outcome": "completed",
-        "source": "bank-import"
-      },
-      {
-        "id": "ecgqf7hssyd",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2025-12-30",
-        "merchant": "Zara",
-        "amount": 120.67,
-        "type": "one-time",
-        "category": "Clothes",
-        "outcome": "completed",
-        "source": "bank-import"
-      },
-      {
-        "id": "ystdf99p5pq",
-        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2025-12-23",
-        "merchant": "YouTube Premium",
+        "merchant": "Dropbox Plus",
         "amount": 11.99,
         "type": "subscription",
-        "category": "Entertainment",
+        "category": "Software",
         "outcome": "completed",
         "source": "bank-import"
       },
       {
-        "id": "wgo8wpu924j",
+        "id": "wzrprtcccy",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2025-12-20",
+        "date": "2025-12-28",
         "merchant": "Adobe Creative Cloud",
         "amount": 54.99,
         "type": "subscription",
@@ -167,13 +112,46 @@
         "source": "bank-import"
       },
       {
-        "id": "kfjghj6jyha",
+        "id": "ykqmfd1g5co",
         "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-        "date": "2025-12-20",
-        "merchant": "Dropbox Plus",
-        "amount": 11.99,
-        "type": "subscription",
+        "date": "2025-12-27",
+        "merchant": "Apple",
+        "amount": 107.99,
+        "type": "one-time",
+        "category": "Gadgets",
+        "outcome": "completed",
+        "source": "bank-import"
+      },
+      {
+        "id": "377pbils7uy",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2025-12-25",
+        "merchant": "Dropbox",
+        "amount": 43.64,
+        "type": "one-time",
         "category": "Software",
+        "outcome": "completed",
+        "source": "bank-import"
+      },
+      {
+        "id": "rq96qqf5cbs",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2025-12-24",
+        "merchant": "Netflix",
+        "amount": 15.99,
+        "type": "subscription",
+        "category": "Entertainment",
+        "outcome": "completed",
+        "source": "bank-import"
+      },
+      {
+        "id": "7izie7arxnh",
+        "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
+        "date": "2025-12-21",
+        "merchant": "Uber Eats",
+        "amount": 128.06,
+        "type": "one-time",
+        "category": "Food Delivery",
         "outcome": "completed",
         "source": "bank-import"
       }
@@ -182,7 +160,7 @@
   "userSettings": {
     "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ": {
       "userId": "user_36iBpwGqABOXCSnmoXLJNQ9XQiJ",
-      "monthlyGoal": 500,
+      "monthlyGoal": 1000,
       "warnThreshold": 50,
       "cooldownMinutes": 15,
       "warnCategories": [
@@ -191,11 +169,11 @@
         "Food Delivery"
       ],
       "bankConnected": true,
-      "bankName": "Demo Bank",
+      "bankName": "Test Bank",
       "extensionConnected": false,
       "onboardingCompleted": true,
-      "plaidAccessToken": "access-sandbox-0b20c7e2-16fd-42ac-9e5e-850f68936d5e",
-      "plaidItemId": "ALEB9D3zJaIBkv6KPlj6Spk6VJMJPBt1MmajG"
+      "plaidAccessToken": "access-sandbox-7f67f8dd-2112-40aa-b3bf-b9a523af24c1",
+      "plaidItemId": "l3PPJwpmA1fdvnx4l3rqS8mBrKJEPXtZAwZXw"
     }
   }
 }

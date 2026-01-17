@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ElevenLabsClient } from "@/components/ElevenLabsClient";
+import { Shield, Landmark, Puzzle, Lightbulb, Check, Wallet } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -6,8 +8,8 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content animate-fadeIn">
-          <div className="badge badge-info mb-lg" style={{ display: 'inline-flex' }}>
-            🛡️ Your spending companion
+          <div className="badge badge-info mb-lg gap-sm" style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <Shield size={16} /> Your spending companion
           </div>
 
           <h1>Stop impulse buys before they hit your card</h1>
@@ -39,7 +41,7 @@ export default function LandingPage() {
           {/* Step 1 */}
           <div className="card animate-fadeIn animate-delay-100">
             <div className="stat-card-icon icon-bg-primary mb-md">
-              🏦
+              <Landmark size={24} />
             </div>
             <h4>1. Connect Your Bank</h4>
             <p className="mt-sm text-sm">
@@ -50,7 +52,7 @@ export default function LandingPage() {
           {/* Step 2 */}
           <div className="card animate-fadeIn animate-delay-200">
             <div className="stat-card-icon icon-bg-info mb-md">
-              🧩
+              <Puzzle size={24} />
             </div>
             <h4>2. Install the Extension</h4>
             <p className="mt-sm text-sm">
@@ -61,7 +63,7 @@ export default function LandingPage() {
           {/* Step 3 */}
           <div className="card animate-fadeIn animate-delay-300">
             <div className="stat-card-icon icon-bg-success mb-md">
-              💡
+              <Lightbulb size={24} />
             </div>
             <h4>3. Get Smart Nudges</h4>
             <p className="mt-sm text-sm">
@@ -79,23 +81,23 @@ export default function LandingPage() {
               <h3 className="mb-md">What You&apos;ll Get</h3>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                 <li className="flex items-center gap-md">
-                  <span className="text-success">✓</span>
+                  <span className="text-success"><Check size={20} /></span>
                   <span>Real-time purchase intervention</span>
                 </li>
                 <li className="flex items-center gap-md">
-                  <span className="text-success">✓</span>
+                  <span className="text-success"><Check size={20} /></span>
                   <span>Subscription tracking & management</span>
                 </li>
                 <li className="flex items-center gap-md">
-                  <span className="text-success">✓</span>
+                  <span className="text-success"><Check size={20} /></span>
                   <span>Spending insights dashboard</span>
                 </li>
                 <li className="flex items-center gap-md">
-                  <span className="text-success">✓</span>
+                  <span className="text-success"><Check size={20} /></span>
                   <span>Customizable impulse rules</span>
                 </li>
                 <li className="flex items-center gap-md">
-                  <span className="text-success">✓</span>
+                  <span className="text-success"><Check size={20} /></span>
                   <span>Money saved tracking</span>
                 </li>
               </ul>
@@ -107,7 +109,9 @@ export default function LandingPage() {
                 padding: 'var(--spacing-2xl)',
                 border: '1px solid var(--border-subtle)'
               }}>
-                <div className="text-3xl mb-sm">💰</div>
+                <div className="flex justify-center mb-sm text-success">
+                  <Wallet size={40} />
+                </div>
                 <div className="stat-card-value text-success">€127</div>
                 <div className="stat-card-label">Average monthly savings</div>
                 <p className="text-sm text-muted mt-md">
@@ -141,6 +145,9 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* ElevenLabs Agent Widget */}
+      <ElevenLabsClient />
     </main>
   );
 }

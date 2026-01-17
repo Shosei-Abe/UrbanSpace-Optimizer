@@ -1,6 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { getTransactions, getUserStats, getUserSettings, seedTransactionsForUser } from "@/lib/mock-data";
+import { Shield, Banknote, RefreshCw, CreditCard, Settings, Puzzle, BarChart3, ShoppingBag } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 
 // Force dynamic rendering since this page uses auth
 export const dynamic = 'force-dynamic';
@@ -44,7 +46,7 @@ export default async function DashboardPage() {
                 {/* Blocked */}
                 <div className="stat-card animate-fadeIn">
                     <div className="stat-card-icon icon-bg-success">
-                        🛡️
+                        <Shield size={24} />
                     </div>
                     <div className="stat-card-value text-success">
                         €{stats.blockedAmount.toFixed(0)}
@@ -57,7 +59,7 @@ export default async function DashboardPage() {
                 {/* Completed */}
                 <div className="stat-card animate-fadeIn animate-delay-100">
                     <div className="stat-card-icon icon-bg-warning">
-                        💸
+                        <Banknote size={24} />
                     </div>
                     <div className="stat-card-value">
                         €{stats.completedAmount.toFixed(0)}
@@ -70,7 +72,7 @@ export default async function DashboardPage() {
                 {/* Subscriptions */}
                 <div className="stat-card animate-fadeIn animate-delay-200">
                     <div className="stat-card-icon icon-bg-info">
-                        🔄
+                        <RefreshCw size={24} />
                     </div>
                     <div className="stat-card-value">
                         €{stats.subscriptionMonthly.toFixed(0)}/mo
@@ -94,14 +96,20 @@ export default async function DashboardPage() {
                     <div className="activity-list">
                         {recentTransactions.map((tx) => (
                             <div key={tx.id} className="activity-item">
-                                <div className={`activity-icon ${tx.outcome === 'blocked'
-                                    ? 'icon-bg-success'
-                                    : tx.type === 'subscription'
-                                        ? 'icon-bg-info'
-                                        : 'icon-bg-warning'
-                                    }`}>
-                                    {tx.outcome === 'blocked' ? '🛡️' : tx.type === 'subscription' ? '🔄' : '🛒'}
-                                </div>
+                                {/* Icon / Logo Area */}
+                                {tx.outcome === 'blocked' ? (
+                                    <div className="activity-icon icon-bg-success">
+                                        <Shield size={20} />
+                                    </div>
+                                ) : (
+                                    <BrandLogo
+                                        merchant={tx.merchant}
+                                        size={40}
+                                        className="mr-md"
+                                        fallbackIcon={tx.type === 'subscription' ? 'store' : 'shopping-bag'}
+                                    />
+                                )}
+
                                 <div className="activity-info">
                                     <div className="activity-title">{tx.merchant}</div>
                                     <div className="activity-meta">
@@ -128,7 +136,9 @@ export default async function DashboardPage() {
                     </div>
                 ) : (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📊</div>
+                        <div className="empty-state-icon">
+                            <BarChart3 size={48} />
+                        </div>
                         <div className="empty-state-title">No activity yet</div>
                         <div className="empty-state-description">
                             Connect your bank or install the Chrome extension to start tracking purchases.
@@ -143,19 +153,27 @@ export default async function DashboardPage() {
             {/* Quick Links */}
             <div className="grid grid-4 mt-xl">
                 <Link href="/dashboard/transactions" className="card" style={{ padding: 'var(--spacing-lg)', textAlign: 'center' }}>
-                    <div className="mb-sm">💳</div>
+                    <div className="mb-sm flex justify-center text-primary">
+                        <CreditCard size={32} />
+                    </div>
                     <div className="font-medium">View Transactions</div>
                 </Link>
                 <Link href="/dashboard/subscriptions" className="card" style={{ padding: 'var(--spacing-lg)', textAlign: 'center' }}>
-                    <div className="mb-sm">🔄</div>
+                    <div className="mb-sm flex justify-center text-info">
+                        <RefreshCw size={32} />
+                    </div>
                     <div className="font-medium">Manage Subscriptions</div>
                 </Link>
                 <Link href="/dashboard/settings" className="card" style={{ padding: 'var(--spacing-lg)', textAlign: 'center' }}>
-                    <div className="mb-sm">⚙️</div>
+                    <div className="mb-sm flex justify-center text-muted">
+                        <Settings size={32} />
+                    </div>
                     <div className="font-medium">Edit Rules</div>
                 </Link>
                 <Link href="#extension" className="card" style={{ padding: 'var(--spacing-lg)', textAlign: 'center' }}>
-                    <div className="mb-sm">🧩</div>
+                    <div className="mb-sm flex justify-center text-success">
+                        <Puzzle size={32} />
+                    </div>
                     <div className="font-medium">Install Extension</div>
                 </Link>
             </div>
