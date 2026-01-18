@@ -1,7 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { getTransactions, getUserStats, getUserSettings, seedTransactionsForUser } from "@/lib/mock-data";
-import { Shield, Banknote, RefreshCw, CreditCard, Settings, Puzzle, BarChart3, ShoppingBag } from "lucide-react";
+
+import { Shield, Banknote, RefreshCw, CreditCard, Settings, Puzzle, BarChart3, ShoppingBag, Hand } from "lucide-react";
 import { BrandLogo } from "@/components/BrandLogo";
 
 // Force dynamic rendering since this page uses auth
@@ -33,7 +34,10 @@ export default async function DashboardPage() {
         <div>
             {/* Page Header */}
             <div className="page-header">
-                <h1 className="page-title">Hi, {firstName} 👋</h1>
+                <h1 className="page-title flex items-center gap-sm">
+                    Hi, {firstName}
+                    <Hand className="text-warning" size={32} />
+                </h1>
                 <p className="page-subtitle">
                     {stats.blockedCount > 0
                         ? `You avoided ${stats.blockedCount} impulse buy${stats.blockedCount !== 1 ? 's' : ''} this month`

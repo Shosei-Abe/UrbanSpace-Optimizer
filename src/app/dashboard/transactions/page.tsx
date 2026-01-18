@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { Transaction } from "@/lib/mock-data";
+import { ShieldCheck, RefreshCw, ShoppingBag, ClipboardList } from "lucide-react";
 
 type TabType = 'all' | 'purchases' | 'subscriptions' | 'blocked';
 
@@ -98,12 +99,17 @@ export default function TransactionsPage() {
                                     <td>
                                         <div className="flex items-center gap-md">
                                             <span className={`activity-icon ${tx.outcome === 'blocked'
-                                                    ? 'icon-bg-success'
-                                                    : tx.type === 'subscription'
-                                                        ? 'icon-bg-info'
-                                                        : 'icon-bg-warning'
+                                                ? 'icon-bg-success'
+                                                : tx.type === 'subscription'
+                                                    ? 'icon-bg-info'
+                                                    : 'icon-bg-warning'
                                                 }`} style={{ width: '32px', height: '32px', fontSize: '0.875rem' }}>
-                                                {tx.outcome === 'blocked' ? '🛡️' : tx.type === 'subscription' ? '🔄' : '🛒'}
+                                                {tx.outcome === 'blocked'
+                                                    ? <ShieldCheck size={16} />
+                                                    : tx.type === 'subscription'
+                                                        ? <RefreshCw size={16} />
+                                                        : <ShoppingBag size={16} />
+                                                }
                                             </span>
                                             <div>
                                                 <div className="font-medium">{tx.merchant}</div>
@@ -123,10 +129,10 @@ export default function TransactionsPage() {
                                     </td>
                                     <td>
                                         <span className={`badge ${tx.outcome === 'blocked'
-                                                ? 'badge-success'
-                                                : tx.type === 'subscription'
-                                                    ? 'badge-info'
-                                                    : 'badge-warning'
+                                            ? 'badge-success'
+                                            : tx.type === 'subscription'
+                                                ? 'badge-info'
+                                                : 'badge-warning'
                                             }`}>
                                             {tx.outcome === 'blocked' ? 'Blocked' : tx.outcome === 'pending' ? 'Pending' : 'Completed'}
                                         </span>
@@ -142,7 +148,9 @@ export default function TransactionsPage() {
                     </table>
                 ) : (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📋</div>
+                        <div className="empty-state-icon">
+                            <ClipboardList size={48} />
+                        </div>
                         <div className="empty-state-title">No transactions found</div>
                         <div className="empty-state-description">
                             {activeTab === 'all'

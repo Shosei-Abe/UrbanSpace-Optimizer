@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { Transaction } from "@/lib/mock-data";
+import { RefreshCw, Lightbulb } from "lucide-react";
 
 export default function SubscriptionsPage() {
     const [subscriptions, setSubscriptions] = useState<Transaction[]>([]);
@@ -66,7 +67,7 @@ export default function SubscriptionsPage() {
                     {subscriptions.map(sub => (
                         <div key={sub.id} className="card flex items-center gap-lg" style={{ padding: 'var(--spacing-lg)' }}>
                             <div className="activity-icon icon-bg-info" style={{ width: '48px', height: '48px', fontSize: '1.25rem' }}>
-                                🔄
+                                <RefreshCw size={24} />
                             </div>
                             <div className="flex-1">
                                 <div className="font-medium text-lg">{sub.merchant}</div>
@@ -87,7 +88,9 @@ export default function SubscriptionsPage() {
             ) : (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">🔄</div>
+                        <div className="empty-state-icon">
+                            <RefreshCw size={48} />
+                        </div>
                         <div className="empty-state-title">No subscriptions found</div>
                         <div className="empty-state-description">
                             Connect your bank to automatically detect recurring payments.
@@ -101,7 +104,10 @@ export default function SubscriptionsPage() {
                 background: 'rgba(16, 185, 129, 0.05)',
                 borderColor: 'rgba(16, 185, 129, 0.2)'
             }}>
-                <h4 className="mb-md">💡 Subscription Tips</h4>
+                <h4 className="mb-md flex items-center gap-sm">
+                    <Lightbulb size={20} className="text-warning" />
+                    <span>Subscription Tips</span>
+                </h4>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
                     <li className="flex items-start gap-md">
                         <span className="text-success">•</span>

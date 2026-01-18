@@ -4,12 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { ElevenLabsClient } from "@/components/ElevenLabsClient";
+import {
+    LayoutDashboard,
+    Receipt,
+    RefreshCw,
+    Settings,
+    Puzzle
+} from "lucide-react";
 
 const navItems = [
-    { href: "/dashboard", label: "Dashboard", icon: "📊" },
-    { href: "/dashboard/transactions", label: "Transactions", icon: "💳" },
-    { href: "/dashboard/subscriptions", label: "Subscriptions", icon: "🔄" },
-    { href: "/dashboard/settings", label: "Settings", icon: "⚙️" },
+    { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard size={20} /> },
+    { href: "/dashboard/transactions", label: "Transactions", icon: <Receipt size={20} /> },
+    { href: "/dashboard/subscriptions", label: "Subscriptions", icon: <RefreshCw size={20} /> },
+    { href: "/dashboard/settings", label: "Settings", icon: <Settings size={20} /> },
 ];
 
 export default function DashboardLayout({
@@ -46,7 +53,7 @@ export default function DashboardLayout({
                         className="sidebar-link"
                         style={{ marginBottom: "var(--spacing-md)" }}
                     >
-                        <span>🧩</span>
+                        <span><Puzzle size={20} /></span>
                         <span>Install Extension</span>
                     </Link>
 
